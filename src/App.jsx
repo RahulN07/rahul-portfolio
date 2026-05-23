@@ -11,8 +11,31 @@ import {
   FaCertificate,
   FaPaperPlane,
   FaArrowUp,
+  FaCss3,
+  FaCode,
+  FaServer,
+  FaKey,
+  FaPlug,
 } from "react-icons/fa";
-import { SiFastapi, SiMysql } from "react-icons/si";
+
+import { 
+  SiPython,
+  SiJavascript,
+  SiReact,
+  SiMysql,
+  SiPostgresql,
+  SiSqlite,
+  SiGit,
+  SiDocker,
+  SiCisco,
+  SiFastapi,
+  SiFlask,
+  SiHtml5,
+  SiTailwindcss,
+  SiBootstrap,
+  SiGithub,
+  SiC,
+} from "react-icons/si";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -212,34 +235,49 @@ setLastSentTime(now);
   const skillCategories = [
     {
       title: "Languages",
-      items: ["Python", "JavaScript (ES6+)", "SQL", "C"],
-      icon: "💻",
+      items: [
+        {name: "Python", icon: <SiPython className="text-yellow-400" />},
+        {name: "JavaScript", icon: <SiJavascript className="text-yellow-300" />},
+        {name: "SQL", icon: <SiMysql className="text-blue-400" />},
+        {name: "C", icon: <SiC className="text-blue-500" />},
+      ],
     },
     {
       title: "Backend",
       items: [
-        "FastAPI",
-        "Flask",
-        "RESTful APIs",
-        "JWT Authentication",
-        "WebSockets",
+        {name: "FastAPI", icon: <SiFastapi className="text-green-400" />},
+        {name: "Flask", icon: <SiFlask className="text-white" />},
+        {name: "RESTful APIs", icon: <FaServer className="text-orange-400" />},
+        {name: "JWT Authentication", icon: <FaKey className="text-blue-400" />},
+        {name: "WebSockets", icon: <FaPlug className="text-purple-400" />},
       ],
-      icon: "⚙️",
     },
     {
       title: "Frontend",
-      items: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
-      icon: "🎨",
+      items: [
+        {name: "React.js", icon: <SiReact className="text-cyan-400" />},
+        {name: "HTML5", icon: <SiHtml5 className="text-orange-400" />},
+        {name: "CSS3", icon: <FaCss3 className="text-blue-400" />},
+        {name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-400" />},
+        {name: "Bootstrap", icon: <SiBootstrap className="text-purple-400" />},
+      ],
     },
     {
       title: "Databases",
-      items: ["MySQL", "PostgreSQL", "SQLite"],
-      icon: "🗄️",
+      items: [
+        {name: "MySQL", icon: <SiMysql className="text-blue-400" />},
+        {name: "PostgreSQL", icon: <SiPostgresql className="text-blue-400" />},
+        {name: "SQLite", icon: <SiSqlite className="text-blue-400" />},
+      ],
     },
     {
       title: "Tools",
-      items: ["Git", "GitHub", "Docker", "VS Code", "Cisco Packet Tracer"],
-      icon: "🛠️",
+      items: [
+        {name: "Git", icon: <SiGit className="text-orange-400" />},
+        {name: "Docker", icon: <SiDocker className="text-blue-400" />},
+        {name: "VS Code", icon: <FaCode className="text-blue-400" />},
+        {name: "Cisco Packet Tracer", icon: <SiCisco className="text-blue-400" />},
+      ],
     },
   ];
 
@@ -357,7 +395,7 @@ setLastSentTime(now);
             animate={{ opacity: 1, x: 0 }}
           >
             <p className="mb-5 inline-block rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300">
-              Final-Year CSE Student • Software Developer
+              Computer Science Graduate • Aspiring Full Stack Developer & Data Scientist
             </p>
 
             <h1 className="mb-6 text-5xl font-black leading-tight md:text-7xl">
@@ -489,11 +527,7 @@ setLastSentTime(now);
               About Me
             </h2>
             <p className="leading-8 text-slate-300">
-              I am a Computer Science Engineering student from Tontadarya
-              College of Engineering, Gadag. I completed a Data Science with
-              Python internship at EchoBrains and worked on a real-time fraud
-              detection system using Python, FastAPI, React, MySQL, TensorFlow,
-              and machine learning.
+              I am Rahul M Nayak, a Computer Science Engineering graduate and aspiring Data Scientist with hands-on experience in building AI-powered solutions, data-driven applications, and intelligent software systems. I specialize in Python, Machine Learning, Data Analysis, FastAPI, React.js, MySQL, and modern development technologies. Through practical projects and internship experience, I have developed solutions ranging from fraud detection dashboards to intelligent campus security systems, applying data science and problem-solving to real-world challenges. I am passionate about extracting insights from data, building predictive models, and creating impactful AI solutions. Currently, I am seeking opportunities in Data Science, Machine Learning, and AI where I can contribute, learn, and grow professionally
             </p>
           </div>
 
@@ -541,20 +575,21 @@ setLastSentTime(now);
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-black/20 transition hover:border-cyan-400 hover:shadow-cyan-500/10"
               >
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="text-3xl">{category.icon}</div>
+                <div className="mb-4">
                   <h3 className="text-xl font-bold text-cyan-400">
+                
                     {category.title}
                   </h3>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {category.items.map((item) => (
+                  {category.items.map((item, index) => (
                     <span
-                      key={item}
+                      key={`${item.name}-${index}`}
                       className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-2 text-sm text-cyan-200"
                     >
-                      {item}
+                      <span className="text-lg">{item.icon}</span>
+                      {item.name}
                     </span>
                   ))}
                 </div>
@@ -623,13 +658,10 @@ setLastSentTime(now);
           </h2>
           <h3 className="text-2xl font-semibold">EchoBrains</h3>
           <p className="mb-5 text-slate-400">
-            Data Science with Python Intern | Jan 2026 – Apr 2026
+            Data Science with Python Intern | Jan 2026 – May 2026
           </p>
           <p className="leading-8 text-slate-300">
-            Built a real-time fraud detection application using Python, FastAPI,
-            React, MySQL, TensorFlow, and machine learning models. Worked on
-            backend APIs, dashboards, transaction monitoring, and fraud risk
-            analysis.
+            Selected for a stipend-based Data Science internship at EchoBrains, where I worked on Python-based real-world projects involving machine learning, data analysis, and intelligent system development. This experience strengthened my problem-solving abilities and industry-ready technical skills.
           </p>
         </motion.div>
       </section>
@@ -767,32 +799,46 @@ setLastSentTime(now);
               </button>
             </form>
 
-            <div className="mt-8 space-y-4">
-              <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=rahulnayak1302@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-            className="block rounded-2xl border border-white/20 px-5 py-4 text-cyan-300 transition hover:border-cyan-400"
+            <div className="space-y-4">
+
+                <a
+                href="mailto:rahulnayak1302@gmail.com"
+                className="flex items-center gap-4 rounded-2xl border border-white/20 bg-[#0b1220] px-5 py-5 transition hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/10"
+                >
+                <FaEnvelope className="text-2xl text-cyan-400" />
+              <div>
+                <p className="text-sm text-slate-400">Email Address</p>
+      <p className="font-medium text-white">rahulnayak1302@gmail.com</p>
+    </div>
+  </a>
+
+  <a
+    href="https://github.com/RahulN07"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-4 rounded-2xl border border-white/20 bg-[#0b1220] px-5 py-5 transition hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/10"
+  >
+    <FaGithub className="text-2xl text-cyan-400" />
+    <div>
+      <p className="text-sm text-slate-400">GitHub Profile</p>
+      <p className="font-medium text-white">github.com/RahulN07</p>
+    </div>
+  </a>
+
+      <a
+    href="https://www.linkedin.com/in/rahul-nayak-b0055b27a/"
+          target="_blank"
+            rel="noopener noreferrer"
+    className="flex items-center gap-4 rounded-2xl border border-white/20 bg-[#0b1220] px-5 py-5 transition hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/10"
             >
-            ✉ rahulnayak1302@gmail.com
-            </a>
-              <a
-                href="https://github.com/RahulN07"
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-2xl border border-white/20 px-5 py-4 text-cyan-300 transition hover:border-cyan-400"
-              >
-                GitHub: github.com/RahulN07
-              </a>
-              <a
-                href="https://www.linkedin.com/in/rahul-nayak-b0055b27a/"
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-2xl border border-white/20 px-5 py-4 text-cyan-300 transition hover:border-cyan-400"
-              >
-                LinkedIn: rahul-nayak-b0055b27a
-              </a>
-            </div>
+            <FaLinkedin className="text-2xl text-cyan-400" />
+          <div>
+            <p className="text-sm text-slate-400">LinkedIn Profile</p>
+            <p className="font-medium text-white">linkedin.com/in/rahul-nayak-b0055b27a</p>
+          </div>
+           </a>
+
+          </div>
           </div>
         </motion.div>
       </section>
