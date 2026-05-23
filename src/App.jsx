@@ -656,18 +656,17 @@ setLastSentTime(now);
             onClick={() => setSelectedCertificate(cert)}
             className="group overflow-hidden rounded-2xl border border-white/10 bg-[#050816] transition hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10"
             >
-          <div className="h-64 overflow-hidden bg-white">
-          <img
-        src={cert.image}
-        alt={cert.title}
-        className="h-full w-full object-contain p-3 transition duration-700 group-hover:scale-105"
-      />
+          <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-2xl text-cyan-400/10">
+            <FaCertificate className="text-2xl text-cyan-400" />
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-bold text-cyan-400">{cert.title}</h3>
+            <p className="text-sm text-slate-400">Click to view certificate</p>
+          </div>
     </div>
 
-    <div className="flex items-center gap-3 p-5">
-      <FaCertificate className="text-2xl text-cyan-400" />
-      <p className="font-semibold text-slate-200">{cert.title}</p>
-    </div>
   </motion.div>
 ))}
 
@@ -813,7 +812,7 @@ setLastSentTime(now);
             {selectedCertificate.title}
             </h3>
 
-            <div className="max-h-[75vh] overflow-auto rounded-2xl bg-white p-3">
+            <div className="max-h-[80vh] overflow-auto rounded-2xl bg-white p-4">
             <img
               src={selectedCertificate.image}
               alt={selectedCertificate.title}
