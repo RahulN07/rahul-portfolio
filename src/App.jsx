@@ -9,7 +9,6 @@ import {
   FaReact,
   FaAward,
   FaCertificate,
-  FaDownload,
   FaPaperPlane,
   FaArrowUp,
 } from "react-icons/fa";
@@ -106,6 +105,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState("about");
   const [showTop, setShowTop] = useState(false);
+  const [lastSentTime, setLastSentTime] = useState(0);
 
   const navItems = [
     "about",
@@ -146,6 +146,44 @@ export default function App() {
     e.preventDefault();
     setSending(true);
     setToast("");
+
+    const name = formRef.current.user_name.value.trim();
+    const email = formRef.current.user_email.value.trim();
+    const message = formRef.current.message.value.trim();
+    const botField = formRef.current.bot_field.value;
+
+    if (botField) {
+      setSending(false);
+      return;
+  }
+
+    if (name.length < 3) {
+      setToast("Please enter a valid name.");
+      setSending(false);
+      return;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+      setToast("Please enter a valid email.");
+      setSending(false);
+      return;
+    }
+
+  if (message.length < 10) {
+    setToast("Message should be at least 10 characters.");
+    setSending(false);
+    return;
+  }
+
+  const now = Date.now();
+
+  if (now - lastSentTime < 60000) {
+    setToast("Please wait 1 minute before sending another message.");
+    setSending(false);
+    return;
+  }
+
+setLastSentTime(now);
 
     emailjs
       .sendForm(
@@ -232,12 +270,27 @@ export default function App() {
   ];
 
   const certificates = [
-    "HackerRank Python Basic",
-    "Data Science and Artificial Intelligence Internship - EchoBrains",
-    "Data Structures and Applications - Infosys Springboard",
-    "Cybersecurity Analyst Simulation - Forage TATA",
-    "Complete Python Bootcamp - Udemy",
-  ];
+  {
+    title: "HackerRank Python Basic",
+    image: "/certificates/hackerrank-python.png",
+  },
+  {
+    title: "EchoBrains Internship",
+    image: "/certificates/echobrains.png",
+  },
+  {
+    title: "Infosys Springboard",
+    image: "/certificates/infosys.png",
+  },
+  {
+    title: "TATA Forage Cybersecurity",
+    image: "/certificates/tata-forage.png",
+  },
+  {
+    title: "Udemy Python Bootcamp",
+    image: "/certificates/udemy-python.png",
+  },
+];
 
   if (loading) {
     return (
@@ -331,19 +384,19 @@ export default function App() {
                 View Projects
               </a>
 
-              <a
-                href="/Rahul_Nayak_Resume.pdf"
-                className="flex items-center gap-2 rounded-xl border border-cyan-400 px-7 py-3 transition hover:bg-cyan-400/10"
+             <a
+              href="#contact"
+              className="flex items-center gap-2 rounded-xl border border-cyan-400 px-7 py-3 transition hover:bg-cyan-400/10"
               >
-                <FaDownload /> Download Resume
-              </a>
+              <FaEnvelope /> Get In Touch
+            </a>
             </div>
 
             <div className="flex gap-4 text-2xl">
               <a
                 href="https://github.com/RahulN07"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:border-cyan-400 hover:text-cyan-400"
               >
                 <FaGithub />
@@ -351,7 +404,7 @@ export default function App() {
               <a
                 href="https://www.linkedin.com/in/rahul-nayak-b0055b27a/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:border-cyan-400 hover:text-cyan-400"
               >
                 <FaLinkedin />
@@ -359,7 +412,7 @@ export default function App() {
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=rahulnayak1302@gmail.com"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:border-cyan-400 hover:text-cyan-400"
                 >
                 <FaEnvelope />
@@ -595,16 +648,26 @@ export default function App() {
           />
 
           <div className="grid gap-6 md:grid-cols-2">
-            {certificates.map((cert) => (
-              <motion.div
-                key={cert}
-                whileHover={{ y: -6 }}
-                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#050816] p-6 transition hover:border-cyan-400"
-              >
-                <FaCertificate className="text-3xl text-cyan-400" />
-                <p className="font-medium text-slate-200">{cert}</p>
-              </motion.div>
-            ))}
+           {certificates.map((cert) => (
+            <motion.div
+            key={cert.title}
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="group overflow-hidden rounded-2xl border border-white/10 bg-[#050816] transition hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10"
+            >
+          <div className="h-48 overflow-hidden bg-white">
+          <img
+        src={cert.image}
+        alt={cert.title}
+        className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+      />
+    </div>
+
+    <div className="flex items-center gap-3 p-5">
+      <FaCertificate className="text-2xl text-cyan-400" />
+      <p className="font-semibold text-slate-200">{cert.title}</p>
+    </div>
+  </motion.div>
+))}
 
             <motion.div
               whileHover={{ y: -6 }}
@@ -661,6 +724,14 @@ export default function App() {
             </p>
 
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              <input
+                type="text"
+                name="bot_field"
+                className="hidden"
+                tabIndex="-1"
+                autoComplete="off"
+              />
+              
               <input
                 name="user_name"
                 type="text"
@@ -726,7 +797,7 @@ export default function App() {
       </section>
 
       <footer className="border-t border-white/10 py-6 text-center text-slate-500">
-        © 2026 Rahul M Nayak. Built with React and Tailwind CSS.
+        © 2026 Rahul M Nayak. All rights reserved.
       </footer>
     </div>
   );
