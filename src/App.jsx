@@ -357,11 +357,13 @@ export default function App() {
                 <FaLinkedin />
               </a>
               <a
-                href="mailto:rahulnayak1302@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=rahulnayak1302@gmail.com"
+                target="_blank"
+                rel="noreferrer"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 transition hover:border-cyan-400 hover:text-cyan-400"
-              >
+                >
                 <FaEnvelope />
-              </a>
+                </a>
             </div>
           </motion.div>
 
@@ -695,11 +697,13 @@ export default function App() {
 
             <div className="mt-8 space-y-4">
               <a
-                href="mailto:rahulnayak1302@gmail.com"
-                className="block rounded-2xl border border-white/20 px-5 py-4 text-cyan-300 transition hover:border-cyan-400"
-              >
-                ✉ rahulnayak1302@gmail.com
-              </a>
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=rahulnayak1302@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-2xl border border-white/20 px-5 py-4 text-cyan-300 transition hover:border-cyan-400"
+            >
+            ✉ rahulnayak1302@gmail.com
+            </a>
               <a
                 href="https://github.com/RahulN07"
                 target="_blank"
