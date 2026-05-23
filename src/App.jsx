@@ -106,6 +106,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("about");
   const [showTop, setShowTop] = useState(false);
   const [lastSentTime, setLastSentTime] = useState(0);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
 
   const navItems = [
     "about",
@@ -652,13 +653,14 @@ setLastSentTime(now);
             <motion.div
             key={cert.title}
             whileHover={{ y: -8, scale: 1.02 }}
+            onClick={() => setSelectedCertificate(cert)}
             className="group overflow-hidden rounded-2xl border border-white/10 bg-[#050816] transition hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/10"
             >
-          <div className="h-48 overflow-hidden bg-white">
+          <div className="h-64 overflow-hidden bg-white">
           <img
         src={cert.image}
         alt={cert.title}
-        className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+        className="h-full w-full object-contain p-3 transition duration-700 group-hover:scale-105"
       />
     </div>
 
@@ -796,9 +798,36 @@ setLastSentTime(now);
         </motion.div>
       </section>
 
-      <footer className="border-t border-white/10 py-6 text-center text-slate-500">
-        © 2026 Rahul M Nayak. All rights reserved.
-      </footer>
+      {selectedCertificate && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm">
+          <div className="relative w-full max-w-5xl rounded-3xl border border-white/10 bg-[#050816] p-5 shadow-2xl shadow-cyan-500/20">
+
+            <button
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute -right-3 -top-3 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400 font-bold text-slate-950 shadow-lg hover:bg-cyan-300"
+            >
+              ✕
+            </button>
+
+            <h3 className="mb-4 text-xl font-bold text-cyan-300">
+            {selectedCertificate.title}
+            </h3>
+
+            <div className="max-h-[75vh] overflow-auto rounded-2xl bg-white p-3">
+            <img
+              src={selectedCertificate.image}
+              alt={selectedCertificate.title}
+              className="mx-auto h-auto w-full object-contain"
+            />
+          </div>
+
+      </div>
+    </div>
+  )}
+
+  <footer className="border-t border-white/10 py-6 text-center text-slate-500">
+       © 2026 Rahul M Nayak. All rights reserved.
+    </footer>
     </div>
   );
 }
