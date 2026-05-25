@@ -526,7 +526,7 @@ setLastSentTime(now);
             <h2 className="mb-6 text-4xl font-black text-cyan-400">
               About Me
             </h2>
-            <p className="leading-8 text-slate-300">
+            <p className="text-gray-300 text-base md:text-lg leading-8 text-justify">
               I am Rahul M Nayak, a Computer Science Engineering graduate and aspiring Data Scientist with hands-on experience in building AI-powered solutions, data-driven applications, and intelligent software systems. I specialize in Python, Machine Learning, Data Analysis, FastAPI, React.js, MySQL, and modern development technologies. Through practical projects and internship experience, I have developed solutions ranging from fraud detection dashboards to intelligent campus security systems, applying data science and problem-solving to real-world challenges. I am passionate about extracting insights from data, building predictive models, and creating impactful AI solutions. Currently, I am seeking opportunities in Data Science, Machine Learning, and AI where I can contribute, learn, and grow professionally
             </p>
           </div>
@@ -540,7 +540,7 @@ setLastSentTime(now);
               Tontadarya College of Engineering, Gadag
             </p>
             <p className="text-slate-400">
-              2022 – 2026 | CGPA: 8.56 / 10
+              2022 – 2026 | CGPA: 8.62 / 10
             </p>
 
             <p className="mb-3 mt-4 text-slate-300">
@@ -660,7 +660,7 @@ setLastSentTime(now);
           <p className="mb-5 text-slate-400">
             Data Science with Python Intern | Jan 2026 – May 2026
           </p>
-          <p className="leading-8 text-slate-300">
+          <p className="leading-8 text-slate-300 text-justify">
             Selected for a stipend-based Data Science internship at EchoBrains, where I worked on Python-based real-world projects involving machine learning, data analysis, and intelligent system development. This experience strengthened my problem-solving abilities and industry-ready technical skills.
           </p>
         </motion.div>
@@ -797,6 +797,7 @@ setLastSentTime(now);
                 <FaPaperPlane />
                 {sending ? "Sending..." : "Send Message"}
               </button>
+              <br />
             </form>
 
             <div className="space-y-4">
